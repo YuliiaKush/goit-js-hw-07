@@ -30,6 +30,7 @@ function handlerProductClick(event) {
 
  }
 
+ console.log(galleryItems);
 
 
  
