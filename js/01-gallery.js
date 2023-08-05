@@ -28,12 +28,6 @@ function handlerProductClick(event) {
     const instance = basicLightbox.create(`<img src = "${imgOriginalEl}">`);
     instance.show();
 
-    container.addEventListener('keydown', (evt) => {
-        if (evt.code === "Escape") {
-            instance.close();
-        }
-    });
-
 }
 
  console.log(galleryItems);
