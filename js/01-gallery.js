@@ -25,35 +25,25 @@ function handlerProductClick(event) {
   if (event.target === event.currentTarget) {
     return
   }
-  event.preventDefault();
-  window.addEventListener('keydown', onEscClick);
-  const imgOriginalEl = event.target.dataset.source;
-  const instance = basicLightbox.create(`<img src = "${imgOriginalEl}">`);
-  instance.show();
-
-}
-
-
-function onEscClick(event) {
-    if (event.code === "Escape") {
-        onModalClose();
-    }
-}
-
-function onModalClose() {
-  window.removeEventListener('keydown', onEscClick);
-
-  const instance = basicLightbox.create(`<img src = "${imgOriginalEl}">`, {
-  onClose: (instance) => {
-    instance.close(); 
-  },
-  onShow: (instance) => {
+    event.preventDefault();
+    const imgOriginalEl = event.target.dataset.source;
+    console.log(imgOriginalEl);
+    const instance = basicLightbox.create(`<img src = "${imgOriginalEl}">`);
     instance.show();
+
+    onShow: () => {
+    document.addEventListener("keydown", onEscapePress);
   },
-});
+    onClose: () => {
+        document.removeEventListener("keydown", onEscapePress);
+      },
 
+function onEscapePress(evt) {
+    if (evt.code === "Escape") {
+        instance.close();
+    }
+};
 }
-
  console.log(galleryItems);
 
 
