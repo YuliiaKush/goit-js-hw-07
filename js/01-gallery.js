@@ -28,7 +28,6 @@ function handlerProductClick(event) {
   event.preventDefault();
   window.addEventListener('keydown', onEscClick);
   const imgOriginalEl = event.target.dataset.source;
-  console.log(imgOriginalEl);
   const instance = basicLightbox.create(`<img src = "${imgOriginalEl}">`);
   instance.show();
 
