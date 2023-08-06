@@ -22,13 +22,20 @@ container.insertAdjacentHTML('beforeend', createImageListMarkup(galleryItems));
 container.addEventListener('click', handlerProductClick);
 
 function handlerProductClick(event) {
+  if (event.target === event.currentTarget) {
+    return;
+  }
     event.preventDefault();
     const imgOriginalEl = event.target.dataset.source;
     console.log(imgOriginalEl);
-    const instance = basicLightbox.create(`<img src = "${imgOriginalEl}">`);
-    instance.show();
-
-
+    const instance = basicLightbox.create(`<img src = "${imgOriginalEl}">`), {
+    onClose: (instance) => {
+      instance.close();
+    },
+    onShow: (instance) => {
+      instance.show();
+      }
+    }
 
 container.addEventListener('keydown', (evt) => {
     if (evt.code === "Escape") {
@@ -37,9 +44,5 @@ container.addEventListener('keydown', (evt) => {
 });
 }
  console.log(galleryItems);
-
-
- 
- 
 
 
