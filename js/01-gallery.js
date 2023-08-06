@@ -28,13 +28,11 @@ function handlerProductClick(event) {
     event.preventDefault();
     const imgOriginalEl = event.target.dataset.source;
     console.log(imgOriginalEl);
-    const instance = basicLightbox.create(`<img src = "${imgOriginalEl}">`);
-    instance.show();
-
+    const instance = basicLightbox.create(`<img src = "${imgOriginalEl}">`),{
     onShow: () => {
-    document.addEventListener("keydown", onEscapePress);
-  },
-    onClose: () => {
+      document.addEventListener("keydown", onEscapePress);
+    },
+      onClose: () => {
         document.removeEventListener("keydown", onEscapePress);
       },
 
@@ -42,8 +40,10 @@ function onEscapePress(evt) {
     if (evt.code === "Escape") {
         instance.close();
     }
-};
-}
+      }
+instance.show();
+}}
+
  console.log(galleryItems);
 
 
