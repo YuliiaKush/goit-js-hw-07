@@ -20,7 +20,7 @@ function createImageListMarkup(galleryItems) {
 
 container.insertAdjacentHTML('beforeend', createImageListMarkup(galleryItems));
 container.addEventListener('click', handlerProductClick);
-
+ 
 function handlerProductClick(event) {
   if (event.target === event.currentTarget) {
     return
@@ -28,13 +28,14 @@ function handlerProductClick(event) {
     event.preventDefault();
     const imgOriginalEl = event.target.dataset.source;
     console.log(imgOriginalEl);
-    const instance = basicLightbox.create(`<img src = "${imgOriginalEl}">`),{
-    onShow: () => {
-      document.addEventListener("keydown", onEscapePress);
-    },
-      onClose: () => {
-        document.removeEventListener("keydown", onEscapePress);
-      },
+   const instance = basicLightbox.create(`<img src="${imgOriginalEl}">`, {
+  onShow: () => {
+    document.addEventListener("keydown", onEscapePress);
+  },
+  onClose: () => {
+    document.removeEventListener("keydown", onEscapePress);
+  },
+});
 
 function onEscapePress(evt) {
     if (evt.code === "Escape") {
@@ -42,9 +43,7 @@ function onEscapePress(evt) {
     }
       }
 instance.show();
-}}
-
- console.log(galleryItems);
+}
 
 
  
