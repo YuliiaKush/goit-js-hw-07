@@ -23,26 +23,42 @@ container.addEventListener('click', handlerProductClick);
 
 function handlerProductClick(event) {
   if (event.target === event.currentTarget) {
-    return;
+    return
   }
-    event.preventDefault();
-    const imgOriginalEl = event.target.dataset.source;
-    console.log(imgOriginalEl);
-    const instance = basicLightbox.create(`<img src = "${imgOriginalEl}">`), {
-    onClose: (instance) => {
-      instance.close();
-    },
-    onShow: (instance) => {
-      instance.show();
-      }
-    }
+  event.preventDefault();
+  window.addEventListener('keydown', onEscClick);
+  const imgOriginalEl = event.target.dataset.source;
+  console.log(imgOriginalEl);
+  const instance = basicLightbox.create(`<img src = "${imgOriginalEl}">`);
+  instance.show();
 
-container.addEventListener('keydown', (evt) => {
-    if (evt.code === "Escape") {
-        instance.close();
-    }
-});
 }
+
+
+function onEscClick(event) {
+    if (event.code === "Escape") {
+        onModalClose();
+    }
+}
+
+function onModalClose() {
+  window.removeEventListener('keydown', onEscClick);
+
+  const instance = basicLightbox.create(`<img src = "${imgOriginalEl}">`, {
+  onClose: (instance) => {
+    instance.close(); 
+  },
+  onShow: (instance) => {
+    instance.show();
+  },
+});
+
+}
+
  console.log(galleryItems);
+
+
+ 
+ 
 
 
